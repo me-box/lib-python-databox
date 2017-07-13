@@ -1,0 +1,23 @@
+FROM phiwal/python3-opencv:latest
+MAINTAINER DataBox <p.yadav@acm.org>
+
+ADD ./src /appcode/src
+ADD . /appcode
+WORKDIR /appcode
+
+RUN pip install -r ./requirements.txt
+
+RUN apk add --update bash && apk add libxtst-dev && rm -rf /var/cache/apk/*
+
+RUN echo "Hello User!"
+RUN  apk add --update nodejs && npm install
+
+
+EXPOSE 8080
+
+
+LABEL databox.type="driver"
+
+ENTRYPOINT ["/usr/bin/python"]
+
+CMD ["./camdriver.py" ]
