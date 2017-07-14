@@ -62,5 +62,3 @@ def waitForStoreStatus(href, status, maxRetries):
             print("Retrying -Current status is " + statusreceived)
     except Exception as err:
         print(err)
-
-waitForStoreStatus('', 'none', 2)
