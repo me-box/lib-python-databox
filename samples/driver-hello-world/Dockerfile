@@ -1,4 +1,4 @@
-FROM phiwal/python3-opencv:latest
+FROM python:3
 MAINTAINER DataBox <p.yadav@acm.org>
 
 ADD . ./pydriver
@@ -6,10 +6,6 @@ ADD . ./pydriver
 WORKDIR /pydriver
 
 RUN pip install -r ./requirements.txt
-
-RUN apk add --update bash && apk add libxtst-dev && rm -rf /var/cache/apk/*
-
-RUN echo "Hello User!"
 
 EXPOSE 8080
 
