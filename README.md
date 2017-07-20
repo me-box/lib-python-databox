@@ -1,1 +1,3 @@
-# python-databox
+# python-databox-library
+
+This repo includes python driver and app templates with databox-python library.

@@ -1,2 +1,2 @@
-# databox-driver-mock
-A fake driver container to test authentication with
+# databox-hello-world-driver
+A simple pyhton hello-world-driver which connects with Databox..
