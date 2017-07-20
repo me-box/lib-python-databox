@@ -25,6 +25,9 @@ else:
     print('Warning: No HTTPS root certficate provided so Databox HTTPS certificates will not be checked')
 
 
+def getHttpsCredentials():
+    return "/run/secrets/DATABOX.pem"
+
 def makeArbiterRequest(method, path, json):
     print("Inside Arbiter Request")
     http.request(method=method, url=arbiterURL + path, json=json, headers={ 'X-Api-Key': arbiterToken }, )

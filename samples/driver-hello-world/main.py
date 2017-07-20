@@ -12,21 +12,7 @@ import ssl
 store= os.environ['DATABOX_STORE_ENDPOINT']
 print('Store ' + store)
 
-dpem = open("/run/secrets/DATABOX_PEM").read()
-print(dpem)
-HTTPS_SECRETS = json.loads(dpem)
-print("CERTFICATE")
-print(str(HTTPS_SECRETS['clientcert']))
-
-fp_cert = open(os.path.abspath("certnew.pem"), "w+")
-fp_cert.write(str(HTTPS_SECRETS['clientcert']))
-fp_cert.close()
-
-
-fp_key = open(os.path.abspath("keynew.pem"), "w+")
-fp_key.write(str(HTTPS_SECRETS['clientprivate']))
-fp_key.close()
-
+pem = databox.getHttpsCredentials()
 
 app = Flask(__name__)
 
@@ -36,5 +22,5 @@ def hello():
 
 if __name__ == "__main__":
      print("Nothing")
-     ctx = ('certnew.pem', 'keynew.pem')
+     ctx = (pem, pem)
      app.run(host='0.0.0.0', port=8080, ssl_context=ctx)
