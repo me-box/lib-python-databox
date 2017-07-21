@@ -1,4 +1,4 @@
-FROM phiwal/python3-opencv:latest
+FROM python:3.5-alpine
 MAINTAINER DataBox <p.yadav@acm.org>
 
 ADD . ./pydriver

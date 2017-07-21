@@ -1,6 +1,5 @@
 import urllib3
 import os
-import requests
 import json
 import base64
 
