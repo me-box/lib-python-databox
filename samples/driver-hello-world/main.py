@@ -12,7 +12,31 @@ import ssl
 store= os.environ['DATABOX_STORE_ENDPOINT']
 print('Store ' + store)
 
+<<<<<<< HEAD
+hostname = os.environ['DATABOX_LOCAL_NAME']
+
+dpem = open("/run/secrets/DATABOX_PEM").read()
+#print(dpem)
+HTTPS_SECRETS = json.loads(dpem)
+
+fp_cert = open(os.path.abspath("certnew.pem"), "w+")
+fp_cert.write(str(HTTPS_SECRETS['clientcert']))
+fp_cert.close()
+
+
+fp_key = open(os.path.abspath("keynew.pem"), "w+")
+fp_key.write(str(HTTPS_SECRETS['clientprivate']))
+fp_key.close()
+
+data = {}
+
+#print(databox.makeArbiterRequest('GET', '/cat', data))
+dx = databox.waitForStoreStatus(store, 'active', 100)
+
+print("dx " + str())
+=======
 pem = databox.getHttpsCredentials()
+>>>>>>> b9e91e639d8f0d0553b0706e711dbbd50527618c
 
 app = Flask(__name__)
 

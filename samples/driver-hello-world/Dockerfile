@@ -7,7 +7,7 @@ WORKDIR /pydriver
 
 RUN pip install -r ./requirements.txt
 
-RUN apk add --update bash && apk add libxtst-dev && rm -rf /var/cache/apk/*
+RUN apk add --update bash && apk add libxtst-dev &&  apk add vim && rm -rf /var/cache/apk/*
 
 RUN echo "Hello User!"
 
