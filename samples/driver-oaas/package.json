@@ -1,0 +1,28 @@
+{
+  "name": "app-oaas",
+  "version": "0.1.0",
+  "description": "A template Databox App in Python",
+  "scripts": {
+    "start": "python main.py",
+    "publish": "docker build -t app-oaas . && docker tag app-oats localhost:5000/app-oaas && docker push localhost:5000/app-oaas"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/me-box/app-oaas.git"
+  },
+  "keywords": [
+    "template",
+    "driver",
+    "mock",
+    "nodejs"
+  ],
+  "author": "Poonam Yadav <p.yadav@acm.org> (http://poonamyadav.net/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/me-box/lib-python-databox/issues"
+  },
+  "homepage": "https://github.com/me-box/lib-python-databox#readme",
+  "dependencies": {
+    "node-databox": "^0.5.1"
+  }
+}

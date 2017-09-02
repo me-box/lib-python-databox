@@ -1,0 +1,29 @@
+{
+	"manifest-version": 1,
+
+	"name": "driver-oaas",
+	"databox-type": "driver",
+	"version": "0.1.0",
+
+	"description": "A template Databox app in Python",
+	"author": "Poonam Yadav <p.yadav@acm.org> (http://poonamyadav.net/)",
+	"license": "MIT",
+	"tags": [
+		"template",
+		"app",
+		"mock",
+		"python"
+	],
+
+	"homepage": "https://github.com/me-box/lib-python-databox",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/me-box/lib-python-databox"
+	},
+
+	"allowed-combinations": [],
+
+	"resource-requirements": {
+		"store": "store-json"
+	}
+}
