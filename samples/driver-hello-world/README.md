@@ -1,5 +1,6 @@
 # databox-hello-world-driver
 A simple python hello-world-driver which connects with Databox.
+<<<<<<< HEAD
 
 The databox container manager install a driver, it reads the SLA associated with the driver and set following Environment Variables:
 
@@ -26,3 +27,5 @@ index.js fetches manifest from appstore ->  main.js - > server.js -> container-m
 /list-apps
 /api/install
 
+=======
+>>>>>>> 53691a3e4d188d1a7be4876005f67e540e368b86
