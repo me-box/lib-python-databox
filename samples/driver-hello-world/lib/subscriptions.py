@@ -1,3 +1,10 @@
-import utils
+import lib.utils as utils
 
-print("util imported")
+def connect(href):
+    print("Not yet implemented")
+
+def subscribe(href, dataSourceID, type):
+    print("Not yet implemented")
+
+def unsubscribe(href, dataSourceID, type):
+    print("Not yet implemented")

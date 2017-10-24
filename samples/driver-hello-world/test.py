@@ -1,6 +1,11 @@
 __author__ = "Poonam Yadav"
 __copyright__ = "Copyright 2007, The Databox Project"
+__credits__ = ["Databox team"]
+__license__ = "GPL"
+__version__ = "0.0.1"
+__maintainer__ = "Poonam Yadav"
 __email__ = "p.yadav@acm.org"
+__status__ = "Development"
 
 import lib as databox
 import urllib3
@@ -34,13 +39,17 @@ print("Store is active now")
 cat = databox.getRootCatalog()
 print("Root Catalog " + str(cat))
 
-app = Flask(__name__)
+dataSourceTemp = json.dumps({
+        "description": "Hello-world-driver-data",
+        "contentType": 'text/json',
+        "vendor": 'Databox Inc.',
+        "type": 'helloworld',
+        "datasourceid": 'helloworld',
+        "storeType": 'store-json'
+    })
 
-@app.route("/ui")
-def hello():
-    return "Hello World!"
+response = databox.registerDatasource(store,dataSourceTemp)
+print("Response from the data registered " + response)
 
-if __name__ == "__main__":
-     print("Nothing")
-     ctx = ('certnew.pem', 'keynew.pem')
-     app.run(host='0.0.0.0', port=8080, ssl_context=ctx)
+response = databox.listAvailableStores()
+print("available stores" + response)

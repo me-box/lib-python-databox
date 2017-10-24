@@ -1,10 +1,10 @@
-import utils
+import lib.utils as utils
 
 
 def read(href, key):
     print("read called")
     newurl= href +'/' + key +'/kv'
-    return utils.makeStoreRequest(method='GET', json=true, url=newurl)
+    return utils.makeStoreRequest(method='GET', json={'True': True}, url=newurl)
 
 
 def write(href, key, data):
