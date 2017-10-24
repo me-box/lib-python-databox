@@ -33,23 +33,27 @@ fp_key.write(str(HTTPS_SECRETS['clientprivate']))
 fp_key.close()
 
 data = {}
-
+#Check if the store is ready for reading or writing
 dx = databox.waitForStoreStatus(store, 'active', 100)
 print("Store is active now")
+
+
+#write key-value pair in the store
+res= databox.key_value.write(store, 'test', { 'foo': 'bar' })
+print("response"+str(res))
+
+#Get the root catalog of all stores from the arbiter
 cat = databox.getRootCatalog()
 print("Root Catalog " + str(cat))
 
+#Register a datastore catalog with the store.
 dataSourceTemp = json.dumps({
-        "description": "Hello-world-driver-data",
-        "contentType": 'text/json',
-        "vendor": 'Databox Inc.',
-        "type": 'helloworld',
-        "datasourceid": 'helloworld',
-        "storeType": 'store-json'
-    })
-
+        "description":'hello-world',
+        "contentType":'text/json',
+        "vendor":'Databox Inc.',
+        "type":'helloworld',
+        "datasourceid":'helloworld',
+        "storeType":'store-json'
+        })
 response = databox.registerDatasource(store,dataSourceTemp)
-print("Response from the data registered " + response)
-
-response = databox.listAvailableStores()
-print("available stores" + response)
+print("Response from the data registered " + str(response))

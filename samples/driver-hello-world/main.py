@@ -15,13 +15,12 @@ print('Store ' + store)
 hostname = os.environ['DATABOX_LOCAL_NAME']
 
 dpem = open("/run/secrets/DATABOX_PEM").read()
-#print(dpem)
+
 HTTPS_SECRETS = json.loads(dpem)
 
 fp_cert = open(os.path.abspath("certnew.pem"), "w+")
 fp_cert.write(str(HTTPS_SECRETS['clientcert']))
 fp_cert.close()
-
 
 fp_key = open(os.path.abspath("keynew.pem"), "w+")
 fp_key.write(str(HTTPS_SECRETS['clientprivate']))

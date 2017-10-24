@@ -17,13 +17,15 @@ def listAvailableStores():
 	cat = getRootCatalog()
 	cat = json.loads(cat)
 	list = {}
+	storeList = []
 	for item in cat['items']:
 		for pair in item['item-metadata']:
 			if (pair['rel'] == 'urn:X-hypercat:rels:hasDescription:en'):
 				list["description"] = pair['val']
 				list["hostname"] = urllib3.util.parse_url(item['href']).hostname
 				list["href"] = item['href']
-		return list
+		storeList.append(list)
+	return storeList
 
 #this function is based on log-store
 def walkStoreCatalogs():
