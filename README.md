@@ -19,4 +19,4 @@ databox.key_value.read(href, key)
 databox.key_value.write(href, key, data)
 ```
 
-The usecases of these functions are in [Driver](lib-python-databox/samples/driver-hello-world/test.py) and [App](./lib-python-databox/samples/app-hello-world/test.py)
+The usecases of these functions are in [Driver](./samples/driver-hello-world/test.py) and [App](./samples/app-hello-world/test.py)
