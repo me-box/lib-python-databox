@@ -1,0 +1,28 @@
+{
+  "name": "driver-hello-world",
+  "version": "0.1.0",
+  "description": "A template Databox driver in Python",
+  "scripts": {
+    "start": "python main.py",
+    "publish": "docker build -t driver-hello-world . && docker tag driver-hello-world localhost:5000/driver-hello-world && docker push localhost:5000/driver-hello-world"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/me-box/lib-python-databox.git"
+  },
+  "keywords": [
+    "template",
+    "driver",
+    "mock",
+    "nodejs"
+  ],
+  "author": "Poonam Yadav <p.yadav@acm.org> (http://poonamyadav.net/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/me-box/lib-python-databox/issues"
+  },
+  "homepage": "https://github.com/me-box/lib-python-databox#readme",
+  "dependencies": {
+    "node-databox": "^0.5.1"
+  }
+}
