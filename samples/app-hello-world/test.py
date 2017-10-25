@@ -16,6 +16,16 @@ import ssl
 
 store= os.environ['DATABOX_STORE_ENDPOINT']
 print('Store ' + store)
+try:
+        driverStore = json.loads(os.environ['DATASOURCE_DS_helloworld'])
+        driverStore_endPoint = driverStore["href"]
+        print('driverStore ' + str(driverStore_endPoint))
+        rurl = urllib3.util.parse_url(driverStore_endPoint)
+        ds_url = rurl.scheme + ':' + '//' + rurl.host + ':' + str(rurl.port)
+        print('driverStore URL ' + str(ds_url))
+except NameError:
+        print("error")
+        driverStore_endPoint = '{}'
 
 hostname = os.environ['DATABOX_LOCAL_NAME']
 
@@ -37,18 +47,24 @@ data = {}
 dx = databox.waitForStoreStatus(store, 'active', 100)
 print("Store is active now")
 
-
 #write key-value pair in the store
 res= databox.key_value.write(store, 'test', { 'foo': 'bar' })
-print("response"+str(res))
+print("response write"+str(res))
+
+response = databox.key_value.read(store, 'test')
+print("response received"+str(response))
 
 #Get the root catalog of all stores from the arbiter
 cat = databox.getRootCatalog()
 print("Root Catalog " + str(cat))
 
-#Register a datastore catalog with the store.
+list= databox.listAvailableStores()
+print("available stores")
+print(list)
+
+#Register a datastore "stream/key" with the local store catalog.
 dataSourceTemp = json.dumps({
-        "description":'helloworld',
+        "description":'hello-world',
         "contentType":'text/json',
         "vendor":'Databox Inc.',
         "type":'helloworld',
@@ -57,3 +73,14 @@ dataSourceTemp = json.dumps({
         })
 response = databox.registerDatasource(store,dataSourceTemp)
 print("Response from the data registered " + str(response))
+
+#read from the driver data stream "helloworld"
+response = databox.key_value.read(ds_url, 'helloworld')
+print("response received from driver store"+str(response))
+
+#export data to external url 
+databox.export.longpoll('https://export.amar.io/', {"helloworld": response.decode('utf8').replace("'", '"')})
+
+#Check all environment variables
+for a in os.environ:
+    print('Var: ', a, 'Value: ', os.getenv(a))

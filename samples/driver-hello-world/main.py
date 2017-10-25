@@ -33,6 +33,16 @@ print("Store is active now")
 cat = databox.getRootCatalog()
 print("Root Catalog " + str(cat))
 
+dataSourceTemp = json.dumps({
+    "description": 'helloworld',
+    "contentType": 'text/json',
+    "vendor": 'Databox Inc.',
+    "type": 'helloworld',
+    "datasourceid": 'helloworld',
+    "storeType": 'store-json'
+})
+response = databox.registerDatasource(store,dataSourceTemp)
+
 app = Flask(__name__)
 
 @app.route("/ui")
