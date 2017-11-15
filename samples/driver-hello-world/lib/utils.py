@@ -18,7 +18,7 @@ if CM_HTTPS_CA_ROOT_CERT is not None:
     http = urllib3.PoolManager(
     ca_certs='/run/secrets/DATABOX_ROOT_CA')
 else:
-    print('Warning: No HTTPS root certficate provided so Databox HTTPS certificates will not be checked')
+    print('Warning: No HTTPS root certificate provided so Databox HTTPS certificates will not be checked')
 
 #def getHttpsCredentials():
 #    credentials = {}
@@ -40,7 +40,7 @@ def makeArbiterRequest(method, path, data):
         if (response.status < 200 and response.status >= 300):
             raise Exception("[API Error]" + str(response.status))
         else:
-            print("Response from arbiter " + str(response.data))
+            #print("Response from arbiter " + str(response.data))
             return response.data
     except Exception as err:
         print("[makeArbiterRequest] error " + repr(err))
