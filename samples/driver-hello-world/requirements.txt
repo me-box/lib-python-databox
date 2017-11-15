@@ -5,3 +5,4 @@ MarkupSafe==1.0
 urllib3==1.21.1
 websocket-client==0.44.0
 pyee==3.0.3
+

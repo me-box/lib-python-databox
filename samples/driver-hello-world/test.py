@@ -42,6 +42,7 @@ print("Store is active now")
 res= databox.key_value.write(store, 'test', { 'foo': 'bar' })
 print("response "+str(res))
 
+
 #Get the root catalog of all stores from the arbiter
 cat = databox.getRootCatalog()
 print("Root Catalog " + str(cat))
@@ -75,5 +76,3 @@ print("Recent Data received " + str(datareceived))
 datareceived = databox.time_series.range(store,'oaasunknown', 1, 2)
 print("Data received " + str(datareceived))
 #databox.subscriptions.connect(store)
-
-
