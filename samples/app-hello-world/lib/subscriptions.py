@@ -40,6 +40,7 @@ def connect(href):
         token64coded = token.decode("utf-8")
         try:
             ws = websocket.WebSocketApp('wss://' + storeURL.host + ':' + str(storeURL.port) + '/ws', header={'x-api-key': str(token64coded)}, subprotocols=["binary", "base64"], on_message = on_message,
+
                               on_error = on_error,
                               on_close = on_close)
             ws.on_open = on_open
