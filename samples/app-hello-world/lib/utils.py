@@ -20,6 +20,7 @@ if CM_HTTPS_CA_ROOT_CERT is not None:
 else:
     print('Warning: No HTTPS root certificate provided so Databox HTTPS certificates will not be checked')
 
+
 #def getHttpsCredentials():
 #    credentials = {}
 #    try:
@@ -41,6 +42,7 @@ def makeArbiterRequest(method, path, data):
             raise Exception("[API Error]" + str(response.status))
         else:
             #print("Response from arbiter " + str(response.data))
+
             return response.data
     except Exception as err:
         print("[makeArbiterRequest] error " + repr(err))

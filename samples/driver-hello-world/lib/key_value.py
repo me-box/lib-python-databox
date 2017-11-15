@@ -6,6 +6,7 @@ def read(href, key):
     newurl= href +'/' + key +'/kv'
     return utils.makeStoreRequest(method='GET', jsonData={'True': True}, url=newurl)
 
+
 def write(href, key, data):
     print("write called")
     if(data):

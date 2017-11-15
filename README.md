@@ -21,6 +21,7 @@ databox.time_series.latest(store_href, dataSourceID)
 databox.time_series.since(store_href, dataSourceID, startTimestamp)
 databox.time_series.range(store_href, dataSourceID, startTimestamp, endTimestamp)
 databox.time_series.write(store_href, dataSourceID, data)
+
 ```
 
 The usecases of these functions for the test purpose included in  the Sample [Driver](./samples/driver-hello-world/test.py) and the sample [App](./samples/app-hello-world/test.py).
