@@ -36,17 +36,14 @@ def connect(href):
         storeUrl = storeURL
         websocket.enableTrace(True)
         token = utils.requestToken(storeURL.host, '/ws', 'GET')
-<<<<<<< HEAD
         #print("token received " + str(token))
-        token64coded = token.decode("utf-8")
-        try:
-            ws = websocket.WebSocketApp('wss://' + storeURL.host + ':' + str(storeURL.port) + '/ws', header={'x-api-key': str(token64coded)}, subprotocols=["binary", "base64"], on_message = on_message,
-=======
+ ###       token64coded = token.decode("utf-8")
+ ##       try:
+ #           ws = websocket.WebSocketApp('wss://' + storeURL.host + ':' + str(storeURL.port) + '/ws', header={'x-api-key': str(token64coded)}, subprotocols=["binary", "base64"], on_message = on_message,
         print("token received " + str(token))
 
         try:
             ws = websocket.WebSocketApp('wss://' + storeURL.host + ':' + str(storeURL.port) + '/ws', headers={'x-api-key': str(token)}, on_message = on_message,
->>>>>>> 0f95c97bbbddd4137e85ebfcf00e6db8b3bff898
                               on_error = on_error,
                               on_close = on_close)
             ws.on_open = on_open
