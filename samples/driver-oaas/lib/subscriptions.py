@@ -37,6 +37,13 @@ def connect(href):
         websocket.enableTrace(True)
         token = utils.requestToken(storeURL.host, '/ws', 'GET')
         #print("token received " + str(token))
+
+ ###       token64coded = token.decode("utf-8")
+ ##       try:
+ #           ws = websocket.WebSocketApp('wss://' + storeURL.host + ':' + str(storeURL.port) + '/ws', header={'x-api-key': str(token64coded)}, subprotocols=["binary", "base64"], on_message = on_message,
+ #       print("token received " + str(token))
+
+
         token64coded = token.decode("utf-8")
         try:
             ws = websocket.WebSocketApp('wss://' + storeURL.host + ':' + str(storeURL.port) + '/ws', header={'x-api-key': str(token64coded)}, subprotocols=["binary", "base64"], on_message = on_message,
@@ -65,4 +72,5 @@ def unsubscribe(href, dataSourceID, type):
             href = dURL.scheme + ':' + '//' + dURL.host
             dataSourceID = dURL.path.replace('/', '')
         return utils.makeStoreRequest(method='GET', jsonData={'True': True}, url=href + '/sub/' + dataSourceID + '/' + type1)
+
 
