@@ -8,16 +8,15 @@ import os
 import json
 from flask import Flask
 import ssl
+from lib.core_store import NewKeyValueClient as nkvClient
+from lib.core_store import NewTimeSeriesClient as ntsClient
 
 store= os.environ['DATABOX_STORE_ENDPOINT']
-print('Store ' + store)
-
+zmq_end_point= os.environ['DATABOX_ZMQ_ENDPOINT']
 hostname = os.environ['DATABOX_LOCAL_NAME']
 
 dpem = open("/run/secrets/DATABOX_PEM").read()
-
 HTTPS_SECRETS = json.loads(dpem)
-
 fp_cert = open(os.path.abspath("certnew.pem"), "w+")
 fp_cert.write(str(HTTPS_SECRETS['clientcert']))
 fp_cert.close()
@@ -26,26 +25,21 @@ fp_key = open(os.path.abspath("keynew.pem"), "w+")
 fp_key.write(str(HTTPS_SECRETS['clientprivate']))
 fp_key.close()
 
-data = {}
+kv = nkvClient(zmq_end_point, False)
+kv.write("newkey","test1",'{"name":"testuser", "age":37}', contentFormat="JSON")
+response = kv.read('newkey', 'test1', contentFormat="JSON")
+print("response received " + str(response))
 
-dx = databox.waitForStoreStatus(store, 'active', 100)
-print("Store is active now")
-cat = databox.getRootCatalog()
-print("Root Catalog " + str(cat))
-
-dataSourceTemp = json.dumps({
-    "description": 'helloworld',
-    "contentType": 'text/json',
-    "vendor": 'Databox Inc.',
-    "type": 'helloworld',
-    "datasourceid": 'helloworld',
-    "storeType": 'store-json'
-})
-response = databox.registerDatasource(store,dataSourceTemp)
+ts = ntsClient(zmq_end_point, False)
+ts.write("newkeyts", '{"name":"testuserts", "age":37}', contentFormat="JSON")
+response = ts.latest("newkeyts",  contentFormat="JSON")
+print("response received " + str(response))
+del kv
 
 app = Flask(__name__)
 
 @app.route("/ui")
+
 def hello():
     return "Hello World!"
 
