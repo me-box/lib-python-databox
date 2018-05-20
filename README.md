@@ -11,7 +11,7 @@ Databox python library provides following funtions:
 ## Key/Value API
 
 ### Write entry
-```
+
 URL: /kv/<id>/<key>
 Method: POST
 Parameters: JSON body of data, replace <id> and <key> with a string
